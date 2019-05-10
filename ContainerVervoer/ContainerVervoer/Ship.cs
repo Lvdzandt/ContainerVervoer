@@ -14,7 +14,9 @@ namespace ContainerVervoer
         private long TotalWeight { get; set; }
         private long LeftWeight { get; set; }
         private long RightWeight { get; set; }
-        private long SideWeightDiff { get; set; }
+        private long SideWeightDiff10 { get; set; }
+
+        private long SideWeightDiff20 { get; set; }
         private int ContainerCount { get; set; }
 
         public Ship(int _length, int _width, int _cooled, int _valued, int _normal)
@@ -206,8 +208,10 @@ namespace ContainerVervoer
 
         public bool BalanceCheck()
         {
-            SideWeightDiff = (TotalWeight/100) * 20; 
-            if (LeftWeight - RightWeight > SideWeightDiff)
+            SideWeightDiff10 = (TotalWeight/100) * 10;
+
+            SideWeightDiff20 = (TotalWeight / 100) * 20;
+            if (LeftWeight - RightWeight > SideWeightDiff10)
             {
                 return false;
             }

@@ -9,3 +9,14 @@ C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.AssemblyInfo.cs
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.dll
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.pdb
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.deps.json
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.runtimeconfig.json
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.runtimeconfig.dev.json
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.dll
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.pdb
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.csprojAssemblyReference.cache
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.csproj.CoreCompileInputs.cache
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.AssemblyInfoInputs.cache
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.AssemblyInfo.cs
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.dll
+C:\Users\lucvd\Desktop\ICT\S2 Her\Algoritme\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.pdb
