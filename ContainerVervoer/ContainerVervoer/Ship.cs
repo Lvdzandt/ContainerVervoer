@@ -55,7 +55,7 @@ namespace ContainerVervoer
                 startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
                 startwidth2 = Convert.ToInt32(Math.Round(wtd)) - 1;
             }
-            
+
             foreach (Container con in Containers)
             {
                 if (con.IsCooled)
@@ -112,7 +112,18 @@ namespace ContainerVervoer
         {
             bool added = false;
             double wtd = (double)Width / 2;
-            int startwidth = Convert.ToInt32(Math.Round(wtd)) -1;
+            int startwidth1 = 0;
+            int startwidth2 = 0;
+            if (wtd % 1 == 0)
+            {
+                startwidth2 = Convert.ToInt32(wtd);
+                startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
+            }
+            else
+            {
+                startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
+                startwidth2 = Convert.ToInt32(Math.Round(wtd)) - 1;
+            }
             foreach (Container con in Containers)
             {
                 if (!con.IsCooled && !con.IsValued)
@@ -123,7 +134,7 @@ namespace ContainerVervoer
                         {
                             for (int length = 1; length < Length; length++)
                             {
-                                for (int width =  startwidth; width > -1; width--)
+                                for (int width = startwidth1; width > -1; width--)
                                 {
                                     if (!added)
                                     {
@@ -158,7 +169,7 @@ namespace ContainerVervoer
                         {
                             for (int length = 1; length < Length; length++)
                             {
-                                for (int width = startwidth; width < Width; width++)
+                                for (int width = startwidth2; width < Width; width++)
                                 {
                                     if (!added)
                                     {
@@ -193,40 +204,110 @@ namespace ContainerVervoer
 
         private void AddValueContainers()
         {
-            bool added = false;
+            bool added = false; double wtd = (double)Width / 2;
+            int startwidth1 = 0;
+            int startwidth2 = 0;
+            if (wtd % 1 == 0)
+            {
+                startwidth2 = Convert.ToInt32(wtd);
+                startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
+            }
+            else
+            {
+                startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
+                startwidth2 = Convert.ToInt32(Math.Round(wtd)) - 1;
+            }
             foreach (Container con in Containers)
             {
                 if (con.IsValued)
                 {
-                    for (int length = 0; length < Length; length++)
+                    if (!BalanceCheck10())
                     {
-                        if (length % 3 != 0)
+                        for (int length = 0; length < Length; length++)
                         {
-                            for (int high = 0; high < 29; high++)
+                            if (length % 3 != 0 || length == 0)
                             {
-                                for (int width = 1; width < Width; width++)
+                                for (int high = 0; high < 29; high++)
                                 {
-                                    if (Point[length, high, width] == null && PointWeightCheck(length, high))
+                                    for (int width = startwidth1; width > -1; width--)
                                     {
-                                        Point[length, width, high] = con;
-                                        AddWeight(high, con.Weight);
-                                        ContainerCount++;
-                                        added = true;
+                                        if (!added)
+                                        {
+                                            if (Point[length, width, high] == null && PointWeightCheck(length, width))
+                                            {
+                                                Point[length, width, high] = con;
+                                                AddWeight(width, con.Weight);
+                                                ContainerCount++;
+                                                added = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    if (added)
+                                    {
                                         break;
                                     }
                                 }
-                                if (added)
-                                {
-                                    added = false;
-                                    break;
-                                }
+                            }
+
+                            if (added)
+                            {
+                                added = false;
+                                break;
+                            }
+                            else
+                            {
+                                length++;
                             }
                         }
-                        else
+                    }
+                    else
+                    {
+                        for (int length = 0; length < Length; length++)
                         {
-                            length++;
+                            if (length % 3 != 0 || length == 0)
+                            {
+                                for (int high = 0; high < 29; high++)
+                                {
+                                    for (int width = startwidth2; width < Width; width++)
+                                    {
+                                        if (!added)
+                                        {
+                                            if (Point[length, width, high] == null && PointWeightCheck(length, width))
+                                            {
+                                                Point[length, width, high] = con;
+                                                AddWeight(width, con.Weight);
+                                                ContainerCount++;
+                                                added = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    if (added)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (added)
+                            {
+                                added = false;
+                                break;
+                            }
+                            else
+                            {
+                                length++;
+                            }
                         }
                     }
+
                 }
             }
         }
@@ -235,15 +316,15 @@ namespace ContainerVervoer
         private void AddWeight(int column, long weight)
         {
             TotalWeight += weight;
-            if (column == Width/2)
+            if (column == Width / 2)
             {
-                
+
             }
-            else if (column < ((Width / 2)-1))
+            else if (column < ((Width / 2) - 1))
             {
                 LeftWeight += weight;
             }
-            else if (column > ((Width / 2)-1))
+            else if (column > ((Width / 2) - 1))
             {
                 RightWeight += weight;
             }
@@ -251,7 +332,7 @@ namespace ContainerVervoer
 
         public bool BalanceCheck10()
         {
-            SideWeightDiff10 = (TotalWeight/100) * 10;
+            SideWeightDiff10 = (TotalWeight / 100) * 10;
 
             SideWeightDiff20 = (TotalWeight / 100) * 20;
             if (LeftWeight - RightWeight > SideWeightDiff10)
@@ -268,7 +349,8 @@ namespace ContainerVervoer
             if (LeftWeight - RightWeight > SideWeightDiff20)
             {
                 return false;
-            }else if (RightWeight - LeftWeight > SideWeightDiff20)
+            }
+            else if (RightWeight - LeftWeight > SideWeightDiff20)
             {
                 return false;
             }
@@ -296,7 +378,7 @@ namespace ContainerVervoer
         {
             AddCooledContainers();
             AddNormalContainers();
-            //AddValueContainers();
+            AddValueContainers();
         }
     }
 }
