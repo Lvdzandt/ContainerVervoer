@@ -52,7 +52,7 @@ namespace ContainerVervoer
             }
             ship = new Ship(ShipLength, ShipWidth, CooledContainers, ValuebleContainers, NormalContainers);
             ship.OrderContainers();
-            if (ship.BalanceCheck())
+            if (ship.BalanceCheck20())
             {
                 Console.WriteLine("Ship has been loaded");
             }
@@ -62,7 +62,7 @@ namespace ContainerVervoer
             }
             Console.ReadLine();
 
-            
+
         }
     }
 }

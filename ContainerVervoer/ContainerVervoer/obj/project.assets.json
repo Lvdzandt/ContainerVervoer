@@ -681,23 +681,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lucvd\\.nuget\\packages\\": {},
+    "C:\\Users\\Luc\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucvd\\Desktop\\ICT\\S2 Her\\Algoritme\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer.csproj",
+      "projectUniqueName": "C:\\Users\\Luc\\Desktop\\git\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer.csproj",
       "projectName": "ContainerVervoer",
-      "projectPath": "C:\\Users\\lucvd\\Desktop\\ICT\\S2 Her\\Algoritme\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer.csproj",
-      "packagesPath": "C:\\Users\\lucvd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lucvd\\Desktop\\ICT\\S2 Her\\Algoritme\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer\\obj\\",
+      "projectPath": "C:\\Users\\Luc\\Desktop\\git\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer.csproj",
+      "packagesPath": "C:\\Users\\Luc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Luc\\Desktop\\git\\ContainerVervoer\\ContainerVervoer\\ContainerVervoer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\lucvd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Luc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

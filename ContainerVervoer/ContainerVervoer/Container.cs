@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace ContainerVervoer
 {
-    class Container
+    public class Container
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public long Weight { get; set; }
         public bool IsCooled { get; set; }
         public bool IsValued { get; set; }
 
-        public Container(int _id, long _weight, string _type)
+        public Container(int id, long weight, string type)
         {
-            ID = _id;
-            Weight = _weight;
-            if (_type == "cool")
+            Id = id;
+            Weight = weight;
+            switch (type)
             {
-                IsCooled = true;
-                IsValued = false;
-            }
-            else if (_type == "value")
-            {
-                IsCooled = false;
-                IsValued = true;
-            }
-            else
-            {
-                IsCooled = false;
-                IsValued = false;
+                case "cool":
+                    IsCooled = true;
+                    IsValued = false;
+                    break;
+                case "value":
+                    IsCooled = false;
+                    IsValued = true;
+                    break;
+                case "normal":
+                    IsCooled = false;
+                    IsValued = false;
+                    break;
             }
         }
     }
