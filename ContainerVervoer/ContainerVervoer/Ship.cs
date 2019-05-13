@@ -64,7 +64,7 @@ namespace ContainerVervoer
                     {
                         for (int high = 0; high < 30; high++)
                         {
-                            for (int width = startwidth1; width > 0; width--)
+                            for (int width = startwidth1; width > -1; width--)
                             {
                                 if (Point[0, width, high] == null && PointWeightCheck(0, width))
                                 {
@@ -123,7 +123,7 @@ namespace ContainerVervoer
                         {
                             for (int length = 1; length < Length; length++)
                             {
-                                for (int width =  startwidth; width > 0; width--)
+                                for (int width =  startwidth; width > -1; width--)
                                 {
                                     if (!added)
                                     {
