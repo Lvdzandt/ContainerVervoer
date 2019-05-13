@@ -11,6 +11,7 @@ namespace ContainerVervoer
         private static readonly Random RndWeight = new Random();
         private int Length { get; }
         private int Width { get; }
+        private long ShipWeight { get; set; }
         private long TotalWeight { get; set; }
         private long LeftWeight { get; set; }
         private long RightWeight { get; set; }
@@ -18,9 +19,13 @@ namespace ContainerVervoer
 
         public long SideWeightDiff20 { get; set; }
         private int ContainerCount { get; set; }
+        private int CoolCount { get; set; }
+        private int NormalCount { get; set; }
+        private int ValueCount { get; set; }
 
-        public Ship(int length, int width, int cooled, int valued, int normal)
+        public Ship(long shipWeight, int length, int width, int cooled, int valued, int normal)
         {
+            ShipWeight = shipWeight;
             Point = new Container[length, width, 30];
             Containers = new List<Container>();
             Length = length;
@@ -39,12 +44,39 @@ namespace ContainerVervoer
             }
         }
 
+        public void OrderedCorrectly()
+        {
+            if (((ShipWeight / 100) * 50) < TotalWeight)
+            {
+
+                if (ContainerCount == Containers.Count)
+                {
+                    if (BalanceCheck20())
+                    {
+                        Console.WriteLine("Ship as been loaded correctly");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ship can not be balanced correctly");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ship does not have room for all the containers");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Ship has not been loaded for at least 50%");
+            }
+        }
+
         private void AddCooledContainers()
         {
             bool added = false;
             double wtd = (double)Width / 2;
-            int startwidth1 = 0;
-            int startwidth2 = 0;
+            int startwidth1;
+            int startwidth2;
             if (wtd % 1 == 0)
             {
                 startwidth2 = Convert.ToInt32(wtd);
@@ -78,6 +110,7 @@ namespace ContainerVervoer
                             {
                                 added = false;
                                 ContainerCount++;
+                                CoolCount++;
                                 break;
                             }
                         }
@@ -100,6 +133,7 @@ namespace ContainerVervoer
                             {
                                 added = false;
                                 ContainerCount++;
+                                CoolCount++;
                                 break;
                             }
                         }
@@ -112,8 +146,8 @@ namespace ContainerVervoer
         {
             bool added = false;
             double wtd = (double)Width / 2;
-            int startwidth1 = 0;
-            int startwidth2 = 0;
+            int startwidth1;
+            int startwidth2;
             if (wtd % 1 == 0)
             {
                 startwidth2 = Convert.ToInt32(wtd);
@@ -143,6 +177,7 @@ namespace ContainerVervoer
                                             Point[length, width, high] = con;
                                             AddWeight(width, con.Weight);
                                             ContainerCount++;
+                                            NormalCount++;
                                             added = true;
                                         }
                                     }
@@ -178,6 +213,7 @@ namespace ContainerVervoer
                                             Point[length, width, high] = con;
                                             AddWeight(width, con.Weight);
                                             ContainerCount++;
+                                            NormalCount++;
                                             added = true;
                                         }
                                     }
@@ -204,9 +240,10 @@ namespace ContainerVervoer
 
         private void AddValueContainers()
         {
-            bool added = false; double wtd = (double)Width / 2;
-            int startwidth1 = 0;
-            int startwidth2 = 0;
+            bool added = false;
+            double wtd = (double)Width / 2;
+            int startwidth1;
+            int startwidth2;
             if (wtd % 1 == 0)
             {
                 startwidth2 = Convert.ToInt32(wtd);
@@ -223,9 +260,9 @@ namespace ContainerVervoer
                 {
                     if (!BalanceCheck10())
                     {
-                        for (int length = 0; length < Length; length++)
+                        for (int length = 0; length < Length;)
                         {
-                            if (length % 3 != 0 || length == 0)
+                            if ((length + 1) % 3 != 0 || length == 0)
                             {
                                 for (int high = 0; high < 29; high++)
                                 {
@@ -235,10 +272,29 @@ namespace ContainerVervoer
                                         {
                                             if (Point[length, width, high] == null && PointWeightCheck(length, width))
                                             {
-                                                Point[length, width, high] = con;
-                                                AddWeight(width, con.Weight);
-                                                ContainerCount++;
-                                                added = true;
+                                                if (high != 0)
+                                                {
+                                                    if (Point[length, width, (high - 1)] != null)
+                                                    {
+                                                        if (!Point[length, width, (high - 1)].IsValued)
+                                                        {
+                                                            Point[length, width, high] = con;
+                                                            AddWeight(width, con.Weight);
+                                                            ContainerCount++;
+                                                            ValueCount++;
+                                                            added = true;
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Point[length, width, high] = con;
+                                                    AddWeight(width, con.Weight);
+                                                    ContainerCount++;
+                                                    ValueCount++;
+                                                    added = true;
+                                                }
+
                                             }
                                         }
                                         else
@@ -252,7 +308,6 @@ namespace ContainerVervoer
                                     }
                                 }
                             }
-
                             if (added)
                             {
                                 added = false;
@@ -266,9 +321,9 @@ namespace ContainerVervoer
                     }
                     else
                     {
-                        for (int length = 0; length < Length; length++)
+                        for (int length = 0; length < Length;)
                         {
-                            if (length % 3 != 0 || length == 0)
+                            if ((length +1) % 3 != 0 || length == 0)
                             {
                                 for (int high = 0; high < 29; high++)
                                 {
@@ -278,10 +333,28 @@ namespace ContainerVervoer
                                         {
                                             if (Point[length, width, high] == null && PointWeightCheck(length, width))
                                             {
-                                                Point[length, width, high] = con;
-                                                AddWeight(width, con.Weight);
-                                                ContainerCount++;
-                                                added = true;
+                                                if (high != 0)
+                                                {
+                                                    if (Point[length, width, (high - 1)] != null)
+                                                    {
+                                                        if (!Point[length, width, (high - 1)].IsValued)
+                                                        {
+                                                            Point[length, width, high] = con;
+                                                            AddWeight(width, con.Weight);
+                                                            ContainerCount++;
+                                                            ValueCount++;
+                                                            added = true;
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Point[length, width, high] = con;
+                                                    AddWeight(width, con.Weight);
+                                                    ContainerCount++;
+                                                    ValueCount++;
+                                                    added = true;
+                                                }
                                             }
                                         }
                                         else

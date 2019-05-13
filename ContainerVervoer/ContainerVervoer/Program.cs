@@ -11,6 +11,7 @@ namespace ContainerVervoer
             Ship ship;
             int shipLength = 0;
             int shipWidth = 0;
+            int shipWeight = 0;
             int cooledContainers = 0;
             int normalContainers = 0;
             int valuableContainers = 0;
@@ -19,6 +20,8 @@ namespace ContainerVervoer
             {
                 try
                 {
+                    Console.WriteLine("How heavy is the ship (measured in kg)");
+                    shipWeight = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("How long is the ship? (measured in containers)");
                     shipLength = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("How wide is the ship? (measured in containers)");
@@ -35,7 +38,6 @@ namespace ContainerVervoer
                         Console.WriteLine("Regular: " + normalContainers + " Valued: " + valuableContainers + " Cooled:" + cooledContainers + ". I this correct (y/n)");
                         if (Convert.ToString(Console.ReadLine()) == "y")
                         {
-                            
                             startup = true;
                         }
                     }
@@ -50,16 +52,9 @@ namespace ContainerVervoer
                 }
                 
             }
-            ship = new Ship(shipLength, shipWidth, cooledContainers, valuableContainers, normalContainers);
+            ship = new Ship(shipWeight, shipLength, shipWidth, cooledContainers, valuableContainers, normalContainers);
             ship.OrderContainers();
-            if (ship.BalanceCheck20())
-            {
-                Console.WriteLine("Ship has been loaded");
-            }
-            else
-            {
-                Console.WriteLine("Ship is not balanced");
-            }
+            ship.OrderedCorrectly();
             Console.ReadLine();
 
 
