@@ -27,15 +27,15 @@ namespace ContainerVervoer
             Width = width;
             for (int i = 0; i < cooled; i++)
             {
-                Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 31000), "cool"));
+                Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 30001), "cool"));
             }
             for (int i = 0; i < valued; i++)
             {
-                Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 31000), "value"));
+                Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 30001), "value"));
             }
             for (int i = 0; i < normal; i++)
             {
-                Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 31000), "normal"));
+                Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 30001), "normal"));
             }
         }
 
@@ -43,7 +43,19 @@ namespace ContainerVervoer
         {
             bool added = false;
             double wtd = (double)Width / 2;
-            int startwidth = Convert.ToInt32(Math.Round(wtd)) - 1;
+            int startwidth1 = 0;
+            int startwidth2 = 0;
+            if (wtd % 1 == 0)
+            {
+                startwidth2 = Convert.ToInt32(wtd);
+                startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
+            }
+            else
+            {
+                startwidth1 = Convert.ToInt32(Math.Round(wtd)) - 1;
+                startwidth2 = Convert.ToInt32(Math.Round(wtd)) - 1;
+            }
+            
             foreach (Container con in Containers)
             {
                 if (con.IsCooled)
@@ -52,7 +64,7 @@ namespace ContainerVervoer
                     {
                         for (int high = 0; high < 30; high++)
                         {
-                            for (int width = startwidth; width > 0; width--)
+                            for (int width = startwidth1; width > 0; width--)
                             {
                                 if (Point[0, width, high] == null && PointWeightCheck(0, width))
                                 {
@@ -74,7 +86,7 @@ namespace ContainerVervoer
                     {
                         for (int high = 0; high < 30; high++)
                         {
-                            for (int width = startwidth; width < Width; width++)
+                            for (int width = startwidth2; width < Width; width++)
                             {
                                 if (Point[0, width, high] == null && PointWeightCheck(0, width))
                                 {
@@ -223,8 +235,11 @@ namespace ContainerVervoer
         private void AddWeight(int column, long weight)
         {
             TotalWeight += weight;
-            
-            if (column < ((Width / 2)-1))
+            if (column == Width/2)
+            {
+                
+            }
+            else if (column < ((Width / 2)-1))
             {
                 LeftWeight += weight;
             }

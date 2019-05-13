@@ -9,34 +9,34 @@ namespace ContainerVervoer
         static void Main(string[] args)
         {
             Ship ship;
-            int ShipLength = 0;
-            int ShipWidth = 0;
-            int CooledContainers = 0;
-            int NormalContainers = 0;
-            int ValuebleContainers = 0;
-            bool Startup = false;
-            while(!Startup)
+            int shipLength = 0;
+            int shipWidth = 0;
+            int cooledContainers = 0;
+            int normalContainers = 0;
+            int valuableContainers = 0;
+            bool startup = false;
+            while(!startup)
             {
                 try
                 {
                     Console.WriteLine("How long is the ship? (measured in containers)");
-                    ShipLength = Convert.ToInt32(Console.ReadLine());
+                    shipLength = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("How wide is the ship? (measured in containers)");
-                    ShipWidth = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("The ship is " + ShipLength + " Long, and " + ShipWidth + " Wide. Is this correct(y/n)");
+                    shipWidth = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("The ship is " + shipLength + " Long, and " + shipWidth + " Wide. Is this correct(y/n)");
                     if (Convert.ToString(Console.ReadLine()) == "y")
                     {
                         Console.WriteLine("How many Cooled containers are on ship?");
-                        CooledContainers = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("How many Valueble containers are on ship?");
-                        ValuebleContainers = Convert.ToInt32(Console.ReadLine());
+                        cooledContainers = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("How many Valuable containers are on ship?");
+                        valuableContainers = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("How many Normal containers are on ship?");
-                        NormalContainers = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Regular: " + NormalContainers + " Valued: " + ValuebleContainers + " Cooled:" + CooledContainers + ". I this correct (y/n)");
+                        normalContainers = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Regular: " + normalContainers + " Valued: " + valuableContainers + " Cooled:" + cooledContainers + ". I this correct (y/n)");
                         if (Convert.ToString(Console.ReadLine()) == "y")
                         {
                             
-                            Startup = true;
+                            startup = true;
                         }
                     }
                     else
@@ -44,13 +44,13 @@ namespace ContainerVervoer
                         throw new FormatException();
                     }
                 }
-                catch (FormatException Exception)
+                catch (FormatException exception)
                 {
-                    Console.WriteLine("Wrong input : " + Exception.Message);
+                    Console.WriteLine("Wrong input : " + exception.Message);
                 }
                 
             }
-            ship = new Ship(ShipLength, ShipWidth, CooledContainers, ValuebleContainers, NormalContainers);
+            ship = new Ship(shipLength, shipWidth, cooledContainers, valuableContainers, normalContainers);
             ship.OrderContainers();
             if (ship.BalanceCheck20())
             {

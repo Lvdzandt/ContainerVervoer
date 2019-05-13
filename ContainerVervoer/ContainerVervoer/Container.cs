@@ -12,20 +12,20 @@ namespace ContainerVervoer
         {
             Id = id;
             Weight = weight;
-            switch (type)
+            if (type == "cool")
             {
-                case "cool":
-                    IsCooled = true;
-                    IsValued = false;
-                    break;
-                case "value":
-                    IsCooled = false;
-                    IsValued = true;
-                    break;
-                case "normal":
-                    IsCooled = false;
-                    IsValued = false;
-                    break;
+                IsCooled = true;
+                IsValued = false;
+            }
+            else if (type == "value")
+            {
+                IsCooled = false;
+                IsValued = true;
+            }
+            else if (type == "normal")
+            {
+                IsCooled = false;
+                IsValued = false;
             }
         }
     }
