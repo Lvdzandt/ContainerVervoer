@@ -54,8 +54,37 @@ namespace ContainerVervoer
             }
             ship = new Ship(shipWeight, shipLength, shipWidth, cooledContainers, valuableContainers, normalContainers);
             ship.OrderContainers();
-            ship.OrderedCorrectly();
+            if (ship.OrderedCorrectly())
+            {
+                Console.Write("          ");
+                for (int i = 0; i < ship.Width; i++)
+                {
+                    Console.Write("       "+ i);
+                }
+                Console.WriteLine("");
+
+                for (int j = 0; j < ship.Length; j++)
+                {
+                    Console.Write("          " + j);
+                    for (int i = 0; i < ship.Width; i++)
+                    {
+                        long weight = ship.PointWeight(i, j);
+                        if (weight.ToString().Length == 6)
+                        {
+                            Console.Write("[" + weight + "] ");
+                        }
+                        else
+                        {
+                            Console.Write("[" + weight + " ] ");
+                        }
+                        
+                    }
+                    Console.WriteLine("");
+                }
+            }
             Console.ReadLine();
+
+
 
 
         }

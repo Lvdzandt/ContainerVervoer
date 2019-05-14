@@ -6,11 +6,11 @@ namespace ContainerVervoer
 {
     public class Ship
     {
-        private Container[,,] Point { get; }
+        public Container[,,] Point { get; }
         public List<Container> Containers { get; }
         private static readonly Random RndWeight = new Random();
-        private int Length { get; }
-        private int Width { get; }
+        public int Length { get; }
+        public int Width { get; }
         private long ShipWeight { get; set; }
         private long TotalWeight { get; set; }
         private long LeftWeight { get; set; }
@@ -44,7 +44,7 @@ namespace ContainerVervoer
             }
         }
 
-        public void OrderedCorrectly()
+        public bool OrderedCorrectly()
         {
             if (((ShipWeight / 100) * 50) < TotalWeight)
             {
@@ -54,21 +54,38 @@ namespace ContainerVervoer
                     if (BalanceCheck20())
                     {
                         Console.WriteLine("Ship as been loaded correctly");
+                        return true;
                     }
                     else
                     {
                         Console.WriteLine("Ship can not be balanced correctly");
+                        return false;
                     }
                 }
                 else
                 {
                     Console.WriteLine("Ship does not have room for all the containers");
+                    return false;
                 }
             }
             else
             {
                 Console.WriteLine("Ship has not been loaded for at least 50%");
+                return false;
             }
+        }
+
+        public long PointWeight(int column, int row)
+        {
+            long totalWeight = 0;
+            for (int i = 0; i < 30; i++)
+            {
+                if (Point[row, column, i] != null)
+                {
+                    totalWeight += Point[row, column, i].Weight;
+                }
+            }
+            return totalWeight;
         }
 
         private void AddCooledContainers()
@@ -98,7 +115,7 @@ namespace ContainerVervoer
                         {
                             for (int width = startwidth1; width > -1; width--)
                             {
-                                if (Point[0, width, high] == null && PointWeightCheck(0, width))
+                                if (Point[0, width, high] == null && PointWeightCheck(0, width, con.Weight))
                                 {
                                     Point[0, width, high] = con;
                                     AddWeight(width, con.Weight);
@@ -121,7 +138,7 @@ namespace ContainerVervoer
                         {
                             for (int width = startwidth2; width < Width; width++)
                             {
-                                if (Point[0, width, high] == null && PointWeightCheck(0, width))
+                                if (Point[0, width, high] == null && PointWeightCheck(0, width,con.Weight))
                                 {
                                     Point[0, width, high] = con;
                                     AddWeight(width, con.Weight);
@@ -172,7 +189,7 @@ namespace ContainerVervoer
                                 {
                                     if (!added)
                                     {
-                                        if (Point[length, width, high] == null && PointWeightCheck(length, width))
+                                        if (Point[length, width, high] == null && PointWeightCheck(length, width, con.Weight))
                                         {
                                             Point[length, width, high] = con;
                                             AddWeight(width, con.Weight);
@@ -208,7 +225,7 @@ namespace ContainerVervoer
                                 {
                                     if (!added)
                                     {
-                                        if (Point[length, width, high] == null && PointWeightCheck(length, width))
+                                        if (Point[length, width, high] == null && PointWeightCheck(length, width, con.Weight))
                                         {
                                             Point[length, width, high] = con;
                                             AddWeight(width, con.Weight);
@@ -270,7 +287,7 @@ namespace ContainerVervoer
                                     {
                                         if (!added)
                                         {
-                                            if (Point[length, width, high] == null && PointWeightCheck(length, width))
+                                            if (Point[length, width, high] == null && PointWeightCheck(length, width, con.Weight))
                                             {
                                                 if (high != 0)
                                                 {
@@ -331,7 +348,7 @@ namespace ContainerVervoer
                                     {
                                         if (!added)
                                         {
-                                            if (Point[length, width, high] == null && PointWeightCheck(length, width))
+                                            if (Point[length, width, high] == null && PointWeightCheck(length, width, con.Weight))
                                             {
                                                 if (high != 0)
                                                 {
@@ -430,9 +447,9 @@ namespace ContainerVervoer
             return true;
         }
 
-        private bool PointWeightCheck(int row, int column)
+        private bool PointWeightCheck(int row, int column, long containerWeight)
         {
-            long weight = 0;
+            long weight = containerWeight;
             for (int i = 0; i < 30; i++)
             {
                 if (Point[row, column, i] != null)
