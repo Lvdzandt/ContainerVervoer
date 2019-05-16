@@ -12,9 +12,9 @@ namespace ContainerVervoer
         public int Length { get; }
         public int Width { get; }
         private long ShipWeight { get; set; }
-        private long TotalWeight { get; set; }
-        private long LeftWeight { get; set; }
-        private long RightWeight { get; set; }
+        public long TotalWeight { get; set; }
+        public long LeftWeight { get; set; }
+        public long RightWeight { get; set; }
         private long SideWeightDiff10 { get; set; }
 
         public long SideWeightDiff20 { get; set; }

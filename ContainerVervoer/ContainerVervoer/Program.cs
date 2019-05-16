@@ -62,22 +62,36 @@ namespace ContainerVervoer
             {
                 while (true)
                 {
-                    Console.Clear();
-                    ShowShip(ship);
-                    Console.WriteLine("Enter [RowNumber,ColumnNumber] for more information about that point");
-                    string point = Console.ReadLine();
-                    int row = Convert.ToInt32(point.Substring(1, (point.LastIndexOf(',') - 1)));
-                    int column = Convert.ToInt32(point.Substring((point.LastIndexOf(',') + 1), (point.LastIndexOf(']') - 3)));
-                    ship.VisualPoint(row, column);
-                    Console.ReadLine();
+                    try
+                    {
+
+                        Console.Clear();
+                        ShowShip(ship);
+                        Console.WriteLine("Enter [RowNumber,ColumnNumber] for more information about that point");
+                        string point = Console.ReadLine();
+                        int row = Convert.ToInt32(point.Substring(1, (point.LastIndexOf(',') - 1)));
+                        int column = Convert.ToInt32(point.Substring((point.LastIndexOf(',') + 1), (point.LastIndexOf(']') - 3)));
+                        ship.VisualPoint(row, column);
+                        Console.ReadLine();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
                 }
             }
 
+            Console.ReadLine();
         }
 
 
         private static void ShowShip(Ship ship)
         {
+
+            Console.WriteLine("TotalWeight: " + ship.TotalWeight);
+            Console.WriteLine("LeftWeight: " + ship.LeftWeight);
+            Console.WriteLine("RightWeight: " + ship.RightWeight);
+            Console.WriteLine("Max Difference: " + ship.SideWeightDiff20);
             Console.Write("          ");
             for (int i = 0; i < ship.Width; i++)
             {
