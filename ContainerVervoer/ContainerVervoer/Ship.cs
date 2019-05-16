@@ -107,7 +107,7 @@ namespace ContainerVervoer
 
             foreach (Container con in Containers)
             {
-                if (con.IsCooled)
+                if (con.Type == ContainerType.Cool)
                 {
                     if (!BalanceCheck10())
                     {
@@ -159,6 +159,17 @@ namespace ContainerVervoer
             }
         }
 
+        public void VisualPoint(int row, int column)
+        {
+            for (int i = 29; i > -1; i--)
+            {
+                if (Point[row, column, i] != null)
+                {
+                    Console.WriteLine(i + ": "+Point[row, column, i].Weight +  "KG Type: " + Point[row, column, i].Type.ToString());
+                }
+            }
+        }
+
         private void AddNormalContainers()
         {
             bool added = false;
@@ -177,7 +188,7 @@ namespace ContainerVervoer
             }
             foreach (Container con in Containers)
             {
-                if (!con.IsCooled && !con.IsValued)
+                if (con.Type != ContainerType.Cool && con.Type != ContainerType.Value)
                 {
                     if (!BalanceCheck10())
                     {
@@ -273,7 +284,7 @@ namespace ContainerVervoer
             }
             foreach (Container con in Containers)
             {
-                if (con.IsValued)
+                if (con.Type == ContainerType.Value)
                 {
                     if (!BalanceCheck10())
                     {
@@ -293,7 +304,7 @@ namespace ContainerVervoer
                                                 {
                                                     if (Point[length, width, (high - 1)] != null)
                                                     {
-                                                        if (!Point[length, width, (high - 1)].IsValued)
+                                                        if ((Point[length, width, (high - 1)].Type != ContainerType.Value))
                                                         {
                                                             Point[length, width, high] = con;
                                                             AddWeight(width, con.Weight);
@@ -354,7 +365,7 @@ namespace ContainerVervoer
                                                 {
                                                     if (Point[length, width, (high - 1)] != null)
                                                     {
-                                                        if (!Point[length, width, (high - 1)].IsValued)
+                                                        if ((Point[length, width, (high - 1)].Type != ContainerType.Value))
                                                         {
                                                             Point[length, width, high] = con;
                                                             AddWeight(width, con.Weight);
