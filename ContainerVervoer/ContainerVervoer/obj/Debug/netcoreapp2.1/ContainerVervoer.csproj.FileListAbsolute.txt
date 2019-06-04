@@ -3,7 +3,6 @@ C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.runtimeconfig.dev.json
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.dll
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\bin\Debug\netcoreapp2.1\ContainerVervoer.pdb
-C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.csprojAssemblyReference.cache
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.csproj.CoreCompileInputs.cache
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.AssemblyInfoInputs.cache
 C:\Users\Luc\Desktop\git\ContainerVervoer\ContainerVervoer\ContainerVervoer\obj\Debug\netcoreapp2.1\ContainerVervoer.AssemblyInfo.cs

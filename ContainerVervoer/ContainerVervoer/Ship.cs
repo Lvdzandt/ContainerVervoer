@@ -30,6 +30,17 @@ namespace ContainerVervoer
             Containers = new List<Container>();
             Length = length;
             Width = width;
+            AddContainers(cooled,valued,normal);
+        }
+
+
+        public Ship()
+        {
+
+        }
+
+        private void AddContainers(int cooled, int valued, int normal)
+        {
             for (int i = 0; i < cooled; i++)
             {
                 Containers.Add(new Container((Containers.Count + 1), RndWeight.Next(4000, 30001), "cool"));

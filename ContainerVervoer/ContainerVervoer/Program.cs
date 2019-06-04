@@ -2,7 +2,7 @@
 
 namespace ContainerVervoer
 {
-    class Program
+    public class Program
     {
 
         
